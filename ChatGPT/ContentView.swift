@@ -8,14 +8,54 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var message = ""
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            VStack {
+                Spacer()
+                HStack {
+                    HStack {
+                        TextField("Message", text: $message)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                        Image(systemName: "mic")
+                            .padding(.trailing)
+                            .foregroundColor(.secondary)
+                    }
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(8)
+                    Image(systemName: "arrow.up.circle.fill")
+                        .font(.system(size: 24))
+                }.padding(.horizontal)
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button {
+                            print("go to history")
+                        } label: {
+                            Label("History", systemImage: "clock")
+                        }
+                        Button {
+                            print("go to settings")
+                        } label: {
+                            Label("Settings", systemImage: "gearshape.fill")
+                        }
+                        Divider()
+                        Button {
+                            print("new chat")
+                        } label: {
+                            Label("New Chat", systemImage: "plus")
+                        }
+
+                    } label: {
+                        Label("Add", systemImage: "ellipsis")
+                            .foregroundColor(.black)
+                    }
+                }
+            }
         }
-        .padding()
     }
 }
 
