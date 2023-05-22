@@ -18,16 +18,17 @@ struct ContentView: View {
                     HStack {
                         TextField("Message", text: $message)
                             .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
+                            .padding(.vertical, 8)
                         Image(systemName: "mic")
                             .padding(.trailing)
                             .foregroundColor(.secondary)
                     }
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(8)
+                    .background(Color(.tertiarySystemFill))
+                    .cornerRadius(20)
                     Image(systemName: "arrow.up.circle.fill")
                         .font(.system(size: 24))
                 }.padding(.horizontal)
+                    .padding(.bottom, 8)
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {

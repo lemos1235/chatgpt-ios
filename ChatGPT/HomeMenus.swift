@@ -10,6 +10,8 @@ import SwiftUI
 struct HomeMenus: View {
     @State private var isShowingHistory = false
 
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         VStack {
             Menu {
@@ -32,8 +34,15 @@ struct HomeMenus: View {
 
             } label: {
                 Label("Add", systemImage: "ellipsis")
-                    .foregroundColor(.black)
+                    .labelStyle(.iconOnly)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 20)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color(.quaternarySystemFill))
+                    )
             }
+            .foregroundColor(colorScheme == .dark ? .white : .black)
         }.sheet(isPresented: $isShowingHistory) {
             HistoryModalView()
                 .presentationDetents([.medium, .large])
@@ -63,9 +72,6 @@ struct HistoryModalView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.horizontal)
             }.padding(.vertical, 8)
-            Divider()
-            Text("Modal Content")
-                .padding()
             Spacer()
         }
     }
